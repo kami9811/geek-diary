@@ -39,10 +39,6 @@ const routes: Routes = [
   {
     path: 'edit/:tab',
     loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
-  },
-  {
-    path: 'family',
-    loadChildren: () => import('./family/family.module').then( m => m.FamilyPageModule)
   }
 ];
 @NgModule({

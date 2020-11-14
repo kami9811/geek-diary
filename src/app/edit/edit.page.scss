@@ -1,27 +1,33 @@
+.button-area{
+}
+
 #file-button-label{
-  font-size: 2.0em;
-  color: #fff;
+  text-align: center;
+  font-size: 1.0em;
+  color: #000;
   background-color: #cbf266;
-  border-radius: 5px;
-  padding: 10px 30px;
-  width: 80%;
+  border-radius: 10px;
+  padding: 12px 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 #file-button{
   display: none;
 }
-.button-area{
-  text-align: center;
-}
 
 #image{
-  // height: 600px;
+  height: 200px;
 }
 
 #post-article-button{
-  font-size: 2.0em;
-  color: #fff;
-  background-color: #cbf266;
-  border-radius: 5px;
-  padding: 10px 30px;
-  width: 80%;
+  // font-size: 1.0em;
+  // color: #000;
+  // background-color: #cbf266;
+  // border-radius: 10px;
+  // padding: 15px 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }

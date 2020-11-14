@@ -5,7 +5,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id="top">家族一覧</div>
+  <div id="top" class="ion-padding">各種設定</div>
+
+  <form class="ion-padding-bottom" (submit)="setDistance()">
+    <ion-item lines="full">
+      <ion-input required type="number" [(ngModel)]="distance" name="distance" placeholder="NABOR DIARYで表示する距離[km]"></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block" color="base-green">保存</ion-button>
+  </form>
+
+  <!--
   <div *ngIf="parentFlag">
     <ion-card *ngFor="let c of childList" button="true" routerLink="/self/3/{{c}}">
       <ion-card-content>{{c}}さん</ion-card-content>
@@ -16,14 +25,20 @@
       <ion-card-content>{{p}}さん</ion-card-content>
     </ion-card>
   </div>
-
+  -->
+  
+  <ion-button expand="block" color="strong" (click)="logout()">ログアウト</ion-button>
+  <!--
   <div id=top-button-area>
     <button id="top-button" (click)="logout()">ログアウト</button>
   </div>
+  -->
 
+  <!--
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="success" (click)="navigateToFamily()">
       <ion-icon name="person-add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  -->
 </ion-content>

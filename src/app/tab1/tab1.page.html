@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <!-- 座標テスト
+  <div>{{latitude}}: {{longitude}}</div>
+  -->
+
   <ion-card *ngFor="let a of articleList" button="true">
     <ion-card-header routerLink="/article/1/{{a.article_id}}/{{a.title}}/{{a.text}}/{{a.id}}">
       <ion-card-subtitle>{{a.id}}さんの投稿</ion-card-subtitle>
@@ -13,13 +17,13 @@
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button color="success" (click)="navigateToSelf()">
+    <ion-fab-button color="base-green" (click)="navigateToSelf()">
       <ion-icon name="newspaper-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="success" (click)="navigateToEdit()">
+    <ion-fab-button color="base-green" (click)="navigateToEdit()">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

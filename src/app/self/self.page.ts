@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { GlobalService } from '../global.service';
 
 @Component({
@@ -28,7 +27,6 @@ export class SelfPage implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private route: ActivatedRoute,
-    private nativeStorage: NativeStorage,
     public gs: GlobalService,
   ) {}
 
@@ -38,56 +36,51 @@ export class SelfPage implements OnInit {
         this.tab = params['tab'];
         this.self_id = params['self_id'];
 
-        // NativeStorage
-        this.nativeStorage.getItem('login').then(
-          data => {
-            // 記事取得
-            // 座標取得
-            if(this.tab == 3){
-              this.postObj['id'] = this.self_id;
-              this.title_id = this.self_id;
-            }
-            else{
-              this.postObj["id"] = data['id'];
-              this.title_id = data['id'];
-            }
-            this.postObj['hash'] = data['hash'];
-            const body = this.postObj;
-            if(this.tab == 1 || this.tab == 3){
-              this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getSelfDiaryArticle.php', body).subscribe(
-                res => {
-                  console.log(res);
-                  this.articleObj = res;
-                  this.articleList = [];
-                  for(let i: any = 0; i < this.articleObj['article_num']; i++){
-                    let n = i + 1;
-                    this.objWord = 'article' + n;
-                    this.articleList.push(this.articleObj['article_list'][this.objWord]);
-                  }
-                  console.log(this.articleList);
-                },
-                error => console.error(error)
-              );
-            }
-            else if(this.tab == 2){
-              this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getSelfTipsArticle.php', body).subscribe(
-                res => {
-                  console.log(res);
-                  this.articleObj = res;
-                  this.articleList = [];
-                  for(let i: any = 0; i < this.articleObj['article_num']; i++){
-                    let n = i + 1;
-                    this.objWord = 'article' + n;
-                    this.articleList.push(this.articleObj['article_list'][this.objWord]);
-                  }
-                  console.log(this.articleList);
-                },
-                error => console.error(error)
-              );
-            }
-          },
-          error => console.log(error)
-        );
+        // LocalStorage
+        // 記事取得
+        // 座標取得
+        if(this.tab == 3){
+          this.postObj['id'] = this.self_id;
+          this.title_id = this.self_id;
+        }
+        else{
+          this.postObj["id"] = localStorage.id;
+          this.title_id = localStorage.id;
+        }
+        this.postObj['hash'] = localStorage.hash;
+        const body = this.postObj;
+        if(this.tab == 1 || this.tab == 3){
+          this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getSelfDiaryArticle.php', body).subscribe(
+            res => {
+              console.log(res);
+              this.articleObj = res;
+              this.articleList = [];
+              for(let i: any = 0; i < this.articleObj['article_num']; i++){
+                let n = i + 1;
+                this.objWord = 'article' + n;
+                this.articleList.push(this.articleObj['article_list'][this.objWord]);
+              }
+              console.log(this.articleList);
+            },
+            error => console.error(error)
+          );
+        }
+        else if(this.tab == 2){
+          this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getSelfTipsArticle.php', body).subscribe(
+            res => {
+              console.log(res);
+              this.articleObj = res;
+              this.articleList = [];
+              for(let i: any = 0; i < this.articleObj['article_num']; i++){
+                let n = i + 1;
+                this.objWord = 'article' + n;
+                this.articleList.push(this.articleObj['article_list'][this.objWord]);
+              }
+              console.log(this.articleList);
+            },
+            error => console.error(error)
+          );
+        }
       },
       error => console.error(error)
     );

@@ -27,6 +27,20 @@ export class EditPage implements OnInit {
   tab: Number;
   tabFlag: Boolean = false;
 
+  ccpp: number = 0;
+  python: number = 0;
+  web: number = 0;
+  server: number = 0;
+  native: number = 0;
+  iot: number = 0;
+
+  ccppFill: string = 'outline';
+  pythonFill: string = 'outline';
+  webFill: string = 'outline';
+  serverFill: string = 'outline';
+  nativeFill: string = 'outline';
+  iotFill: string = 'outline';
+
   constructor(
     private gs: GlobalService,
     private geolocation: Geolocation,

@@ -43,7 +43,6 @@ export class Tab1Page implements OnInit {
         this.returnObj = res;
         if(this.returnObj["status"] == 200){
           localStorage.hash = this.returnObj["hash"];
-
           // 記事取得
           // 座標取得
           this.geolocation.getCurrentPosition().then((resp) => {
@@ -54,6 +53,7 @@ export class Tab1Page implements OnInit {
             this.postObj["latitude"] = this.latitude;
             this.postObj["longitude"] = this.longitude;
             const body = this.postObj;
+            console.log(body);
 
             this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getDiaryArticle.php', body).subscribe(
               res => {
