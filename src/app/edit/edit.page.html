@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button id="back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>編集ページ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="tabFlag">
+    <div class="button-area ion-padding">
+      <label for="file-button" id="file-button-label">日誌の写真を選択</label>
+      <input type="file" accept="image/*" id="file-button" (change)="loadPicture($event)"/>
+    </div>
+    <div *ngIf="imageFlag">
+      <ion-img [src]="image" id="image"></ion-img>
+    </div>
+
+    <ion-card>
+      <ion-card-content>次のオススメの文[1]: RECOMMEND1</ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>次のオススメの文[2]: RECOMMEND2</ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>次のオススメの文[3]: RECOMMEND3</ion-card-content>
+    </ion-card>
+  </div>
+
+  <form (submit)="postArticle()">
+    <ion-item>
+      <ion-label position="floating">タイトル</ion-label>
+      <ion-input required type="text" [(ngModel)]="title" name="title"></ion-input>
+      <ion-label position="floating">本文</ion-label>
+      <ion-textarea [(ngModel)]="text" name="text"></ion-textarea>
+    </ion-item>
+    <div class="button-area">
+      <button type="submit" id="post-article-button">投稿する</button>
+    </div>
+  </form>
+</ion-content>

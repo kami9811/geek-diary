@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button id="back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{headerTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{id}}さんの投稿</ion-card-subtitle>
+      <ion-card-title>{{title}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <div *ngIf="imageFlag" id="image">
+    <ion-img [src]="image"></ion-img>
+  </div>
+
+  <div id="text">{{text}}</div>
+
+  <ion-card *ngFor="let c of commentList" button="true">
+    <ion-card-header>
+      <ion-card-subtitle>{{c.id}}さんの投稿</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>{{c.text}}</ion-card-content>
+  </ion-card>
+
+  <form (submit)="postComment()">
+    <ion-item>
+      <ion-label position="floating">投稿コメント</ion-label>
+      <ion-textarea [(ngModel)]="comment" name="comment"></ion-textarea>
+    </ion-item>
+    <div id="button-area">
+      <button type="submit" id="post-comment-button">コメントを投稿する</button>
+    </div>
+  </form>
+</ion-content>

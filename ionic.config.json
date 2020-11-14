@@ -1,0 +1,7 @@
+{
+  "name": "すまいる日誌",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button id="back"></ion-back-button>
+    </ion-buttons>
+    <ion-title><ion-img id="icon" src="../../assets/icon/icon.png"></ion-img></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img src="../../assets/logo.png"></ion-img>
+  <div id="top">新規登録</div>
+  <div class="button_center">
+  <form class="ion-padding" (submit)="signup()">
+    <ion-item lines="full" class="ion-padding-bottom">
+      <ion-label position="floating">ID</ion-label>
+      <ion-input required type="text" [(ngModel)]="id" name="id"></ion-input>
+      <ion-label position="floating">e-mail</ion-label>
+      <ion-input required type="text" [(ngModel)]="email" name="email"></ion-input>
+      <ion-label>ご利用タイプ</ion-label>
+      <ion-select required [(ngModel)]="attribute" name="attribute" placeholder="1つ選んでください">
+        <ion-select-option value="0">おじいちゃん・おばあちゃん</ion-select-option>
+        <ion-select-option value="1">お父さん・お母さん・子供</ion-select-option>
+      </ion-select>
+      <ion-label>在住している都道府県</ion-label>
+      <ion-select required [(ngModel)]="prefecture" name="prefecture" placeholder="1つ選んでください">
+        <ion-select-option value="北海道">北海道</ion-select-option>
+        <ion-select-option value="青森県">青森県</ion-select-option>
+        <ion-select-option value="岩手県">岩手県</ion-select-option>
+        <ion-select-option value="宮城県">宮城県</ion-select-option>
+        <ion-select-option value="秋田県">秋田県</ion-select-option>
+        <ion-select-option value="山形県">山形県</ion-select-option>
+        <ion-select-option value="福島県">福島県</ion-select-option>
+        <ion-select-option value="茨城県">茨城県</ion-select-option>
+        <ion-select-option value="栃木県">栃木県</ion-select-option>
+        <ion-select-option value="群馬県">群馬県</ion-select-option>
+        <ion-select-option value="埼玉県">埼玉県</ion-select-option>
+        <ion-select-option value="千葉県">千葉県</ion-select-option>
+        <ion-select-option value="東京都">東京都</ion-select-option>
+        <ion-select-option value="神奈川県">神奈川県</ion-select-option>
+        <ion-select-option value="新潟県">新潟県</ion-select-option>
+        <ion-select-option value="富山県">富山県</ion-select-option>
+        <ion-select-option value="石川県">石川県</ion-select-option>
+        <ion-select-option value="福井県">福井県</ion-select-option>
+        <ion-select-option value="山梨県">山梨県</ion-select-option>
+        <ion-select-option value="長野県">長野県</ion-select-option>
+        <ion-select-option value="岐阜県">岐阜県</ion-select-option>
+        <ion-select-option value="静岡県">静岡県</ion-select-option>
+        <ion-select-option value="愛知県">愛知県</ion-select-option>
+        <ion-select-option value="三重県">三重県</ion-select-option>
+        <ion-select-option value="滋賀県">滋賀県</ion-select-option>
+        <ion-select-option value="京都府">京都府</ion-select-option>
+        <ion-select-option value="大阪府">大阪府</ion-select-option>
+        <ion-select-option value="兵庫県">兵庫県</ion-select-option>
+        <ion-select-option value="奈良県">奈良県</ion-select-option>
+        <ion-select-option value="和歌山県">和歌山県</ion-select-option>
+        <ion-select-option value="鳥取県">鳥取県</ion-select-option>
+        <ion-select-option value="島根県">島根県</ion-select-option>
+        <ion-select-option value="岡山県">岡山県</ion-select-option>
+        <ion-select-option value="広島県">広島県</ion-select-option>
+        <ion-select-option value="山口県">山口県</ion-select-option>
+        <ion-select-option value="徳島県">徳島県</ion-select-option>
+        <ion-select-option value="香川県">香川県</ion-select-option>
+        <ion-select-option value="愛媛県">愛媛県</ion-select-option>
+        <ion-select-option value="高知県">高知県</ion-select-option>
+        <ion-select-option value="福岡県">福岡県</ion-select-option>
+        <ion-select-option value="佐賀県">佐賀県</ion-select-option>
+        <ion-select-option value="長崎県">長崎県</ion-select-option>
+        <ion-select-option value="熊本県">熊本県</ion-select-option>
+        <ion-select-option value="大分県">大分県</ion-select-option>
+        <ion-select-option value="宮崎県">宮崎県</ion-select-option>
+        <ion-select-option value="鹿児島県">鹿児島県</ion-select-option>
+        <ion-select-option value="沖縄県">沖縄県</ion-select-option>
+      </ion-select>
+      <ion-label position="floating">パスワード</ion-label>
+      <ion-input required type="password" [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
+    <div class="button-area">
+      <button type="submit" id="login-button" class="button-bottom">新規登録する</button>
+    </div>
+  </form>
+  </div>
+</ion-content>
