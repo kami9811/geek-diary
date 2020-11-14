@@ -27,28 +27,31 @@
     <ion-card-content>次のオススメの文[3]: RECOMMEND3</ion-card-content>
   </ion-card>
   -->
+  <div id="category-center" class="ion-text-center ion-padding-top">
+    投稿日誌のカテゴリを選択してください
+  </div>
 
-  <ion-grid>
+  <ion-grid (click)="onGrid($event)">
     <ion-row>
       <ion-col>
-        <ion-button expand="block" fill="outline" color="ccpp-three">C/C++</ion-button>
+        <ion-button id="ccpp" expand="block" [fill]="ccppFill" color="ccpp-three">C/C++</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" fill="outline" color="pytho-three">Python</ion-button>
+        <ion-button id="python" expand="block" [fill]="pythonFill" color="python-three">Python</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" fill="outline" color="web-three">Web系</ion-button>
+        <ion-button id="web" expand="block" [fill]="webFill" color="web-three">Web系</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" fill="outline" color="server-three">Server</ion-button>
+        <ion-button id="server" expand="block" [fill]="serverFill" color="server-three">Server</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" fill="outline" color="native-three">ネイティブ</ion-button>
+        <ion-button id="native" expand="block" [fill]="nativeFill" color="native-three">ネイティブ</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" fill="outline" color="iot-three">IoT</ion-button>
+        <ion-button id="iot" expand="block" [fill]="iotFill" color="iot-three">IoT</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

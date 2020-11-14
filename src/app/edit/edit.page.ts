@@ -143,4 +143,74 @@ export class EditPage implements OnInit {
     this.router.navigate(['/tabs', tabPos, 'edited']);
   }
 
+  onGrid = (e: any) => {
+    console.log('ON GRID!!');
+    if(e.target.id == 'ccpp'){
+      // console.log('C/C++');
+      if(this.ccpp == 0){
+        this.ccppFill = 'solid';
+        this.ccpp = 1;
+      }
+      else{
+        this.ccppFill = 'outline';
+        this.ccpp = 0;
+      }
+    }
+    else if(e.target.id == 'python'){
+      // console.log('Python');
+      if(this.python == 0){
+        this.pythonFill = 'solid';
+        this.python = 1;
+      }
+      else{
+        this.pythonFill = 'outline';
+        this.python = 0;
+      }
+    }
+    else if(e.target.id == 'web'){
+      // console.log('Web');
+      if(this.web == 0){
+        this.webFill = 'solid';
+        this.web = 1;
+      }
+      else{
+        this.webFill = 'outline';
+        this.web = 0;
+      }
+    }
+    else if(e.target.id == 'server'){
+      // console.log('Server');
+      if(this.server == 0){
+        this.serverFill = 'solid';
+        this.server = 1;
+      }
+      else{
+        this.serverFill = 'outline';
+        this.server = 0;
+      }
+    }
+    else if(e.target.id == 'native'){
+      // console.log('Native');
+      if(this.native == 0){
+        this.nativeFill = 'solid';
+        this.native = 1;
+      }
+      else{
+        this.nativeFill = 'outline';
+        this.native = 0;
+      }
+    }
+    else if(e.target.id == 'iot'){
+      // console.log('IoT');
+      if(this.iot == 0){
+        this.iotFill = 'solid';
+        this.iot = 1;
+      }
+      else{
+        this.iotFill = 'outline';
+        this.iot = 0;
+      }
+    }
+  }
+
 }
