@@ -49,12 +49,11 @@ export class SignupPage implements OnInit {
   signup = () => {
     this.postObj['id'] = this.id;
     this.postObj['email'] = this.email;
-    this.postObj['attribute'] = this.attribute;
     this.postObj['prefecture'] = this.prefecture;
     this.postObj['password'] = this.password;
     const body = this.postObj;
 
-    this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/signup.php', body).subscribe(
+    this.gs.http('https://kn46itblog.com/hackathon/winter2020/php_apis/signup.php', body).subscribe(
       res => {
         this.returnObj = res;
         if(this.returnObj['status'] == 200){

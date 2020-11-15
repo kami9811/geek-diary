@@ -50,7 +50,7 @@ export class SelfPage implements OnInit {
         this.postObj['hash'] = localStorage.hash;
         const body = this.postObj;
         if(this.tab == 1 || this.tab == 3){
-          this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getSelfDiaryArticle.php', body).subscribe(
+          this.gs.http('https://kn46itblog.com/hackathon/winter2020/php_apis/getSelfDiaryArticle.php', body).subscribe(
             res => {
               console.log(res);
               this.articleObj = res;
@@ -58,22 +58,24 @@ export class SelfPage implements OnInit {
               for(let i: any = 0; i < this.articleObj['article_num']; i++){
                 let n = i + 1;
                 this.objWord = 'article' + n;
-                this.articleList.push(this.articleObj['article_list'][this.objWord]);
-              }
-              console.log(this.articleList);
-            },
-            error => console.error(error)
-          );
-        }
-        else if(this.tab == 2){
-          this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getSelfTipsArticle.php', body).subscribe(
-            res => {
-              console.log(res);
-              this.articleObj = res;
-              this.articleList = [];
-              for(let i: any = 0; i < this.articleObj['article_num']; i++){
-                let n = i + 1;
-                this.objWord = 'article' + n;
+
+                // 数字→英語の変換
+                if(this.articleObj['article_list'][this.objWord]['category_level'] == 1){
+                  this.articleObj['article_list'][this.objWord]['category_level'] = 'one';
+                }
+                else if(this.articleObj['article_list'][this.objWord]['category_level'] == 2){
+                  this.articleObj['article_list'][this.objWord]['category_level'] = 'two';
+                }
+                else if(this.articleObj['article_list'][this.objWord]['category_level'] == 3){
+                  this.articleObj['article_list'][this.objWord]['category_level'] = 'three';
+                }
+                else if(this.articleObj['article_list'][this.objWord]['category_level'] == 4){
+                  this.articleObj['article_list'][this.objWord]['category_level'] = 'four';
+                }
+                else if(this.articleObj['article_list'][this.objWord]['category_level'] == 5){
+                  this.articleObj['article_list'][this.objWord]['category_level'] = 'five';
+                }
+
                 this.articleList.push(this.articleObj['article_list'][this.objWord]);
               }
               console.log(this.articleList);

@@ -10,6 +10,14 @@ import { GlobalService } from '../global.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+  /*
+  // 自動取得に必要なパーツ
+  interval: any;
+
+  this.interval = setInterval(() => {
+    // Function
+  }, 5000);
+  */
   latitude: Number = 0.0;
   longitude: Number = 0.0;
 
@@ -21,6 +29,8 @@ export class Tab1Page implements OnInit {
 
   // 記事
   articleList: any[] = [];
+
+  interval: any;
 
   constructor(
     private geolocation: Geolocation,
@@ -38,60 +48,12 @@ export class Tab1Page implements OnInit {
     const body = this.postObj;
     console.log(body);
 
-    this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/login.php', body).subscribe(
+    this.gs.http('https://kn46itblog.com/hackathon/winter2020/php_apis/login.php', body).subscribe(
       res => {
         this.returnObj = res;
         if(this.returnObj["status"] == 200){
           localStorage.hash = this.returnObj["hash"];
-          // 記事取得
-          // 座標取得
-          this.geolocation.getCurrentPosition().then((resp) => {
-            this.latitude = resp.coords.latitude;
-            this.longitude = resp.coords.longitude;
-
-            this.postObj["hash"] = this.returnObj['hash'];
-            this.postObj["latitude"] = this.latitude;
-            this.postObj["longitude"] = this.longitude;
-            const body = this.postObj;
-            console.log(body);
-
-            this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getDiaryArticle.php', body).subscribe(
-              res => {
-                /*
-                {
-                	"status": 200,
-                	"message": "日記記事一覧取得に成功しました.",
-                	"article_num": ARTICLE_NUM,
-                	"article_list": {
-                		"article1": {
-                			"title": "TITLE",
-                			"text": "TEXT",
-                			"article_id": ARTICLE_ID,
-                			"id": "ID",
-                			"distance": DISTANCE
-                		},
-                		"article2": {
-                			...
-                		},
-                		...
-                	}
-                }
-                */
-                console.log(res);
-                this.articleObj = res;
-                this.articleList = [];
-                for(let i: any = 0; i < this.articleObj['article_num']; i++){
-                  let n = i + 1;
-                  this.objWord = 'article' + n;
-                  this.articleList.push(this.articleObj['article_list'][this.objWord]);
-                }
-                console.log(this.articleList);
-              },
-              error => console.error(error)
-            );
-          }).catch((error) => {
-            console.log('Error getting location', error);
-          });
+          this.getList();
         }
         else{
           this.router.navigate(['/login']);
@@ -99,6 +61,11 @@ export class Tab1Page implements OnInit {
       },
       error => console.error(error)
     );
+
+    this.interval = setInterval(() => {
+      // Function
+      this.getList();
+    }, 10000);
   }
 
   async alertGps() {
@@ -128,6 +95,58 @@ export class Tab1Page implements OnInit {
     this.router.navigate(['/edit', 1]);
   }
 
+  getList = () => {
+    // 記事取得
+    // 座標取得
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.latitude = resp.coords.latitude;
+      this.longitude = resp.coords.longitude;
+
+      this.postObj["hash"] = localStorage.hash;
+      this.postObj["latitude"] = this.latitude;
+      this.postObj["longitude"] = this.longitude;
+      this.postObj["distance"] = Number(localStorage.distance);
+      this.postObj["tab"] = 1;
+      this.postObj["attribute"] = localStorage.attribute;
+      const body = this.postObj;
+      console.log(body);
+
+      this.gs.http('https://kn46itblog.com/hackathon/winter2020/php_apis/getDiaryArticle.php', body).subscribe(
+        res => {
+          console.log(res);
+          this.articleObj = res;
+          this.articleList = [];
+          for(let i: any = 0; i < this.articleObj['article_num']; i++){
+            let n = i + 1;
+            this.objWord = 'article' + n;
+
+            // 数字→英語の変換
+            if(this.articleObj['article_list'][this.objWord]['category_level'] == 1){
+              this.articleObj['article_list'][this.objWord]['category_level'] = 'one';
+            }
+            else if(this.articleObj['article_list'][this.objWord]['category_level'] == 2){
+              this.articleObj['article_list'][this.objWord]['category_level'] = 'two';
+            }
+            else if(this.articleObj['article_list'][this.objWord]['category_level'] == 3){
+              this.articleObj['article_list'][this.objWord]['category_level'] = 'three';
+            }
+            else if(this.articleObj['article_list'][this.objWord]['category_level'] == 4){
+              this.articleObj['article_list'][this.objWord]['category_level'] = 'four';
+            }
+            else if(this.articleObj['article_list'][this.objWord]['category_level'] == 5){
+              this.articleObj['article_list'][this.objWord]['category_level'] = 'five';
+            }
+
+            this.articleList.push(this.articleObj['article_list'][this.objWord]);
+          }
+          console.log(this.articleList);
+        },
+        error => console.error(error)
+      );
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
 }
 /* Alert
   import { Component } from '@angular/core';

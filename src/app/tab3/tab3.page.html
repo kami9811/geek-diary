@@ -9,7 +9,8 @@
 
   <form class="ion-padding-bottom" (submit)="setDistance()">
     <ion-item lines="full">
-      <ion-input required type="number" [(ngModel)]="distance" name="distance" placeholder="NABOR DIARYで表示する距離[km]"></ion-input>
+      <ion-label position="stacked">NABOR DIARYで表示する距離[km]</ion-label>
+      <ion-input required type="number" [(ngModel)]="distance" name="distance" placeholder="入力後「保存ボタン」で反映"></ion-input>
     </ion-item>
     <ion-button type="submit" expand="block" color="base-green">保存</ion-button>
   </form>
@@ -26,7 +27,7 @@
     </ion-card>
   </div>
   -->
-  
+
   <ion-button expand="block" color="strong" (click)="logout()">ログアウト</ion-button>
   <!--
   <div id=top-button-area>

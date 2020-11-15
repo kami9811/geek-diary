@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-img src="../../assets/logo.png"></ion-img>
+  <ion-img class="ion-padding" src="../../assets/logo.png"></ion-img>
   <div id="top">新規登録</div>
   <div class="button_center">
   <form class="ion-padding" (submit)="signup()">
@@ -17,11 +17,6 @@
       <ion-input required type="text" [(ngModel)]="id" name="id"></ion-input>
       <ion-label position="floating">e-mail</ion-label>
       <ion-input required type="text" [(ngModel)]="email" name="email"></ion-input>
-      <ion-label>ご利用タイプ</ion-label>
-      <ion-select required [(ngModel)]="attribute" name="attribute" placeholder="1つ選んでください">
-        <ion-select-option value="0">おじいちゃん・おばあちゃん</ion-select-option>
-        <ion-select-option value="1">お父さん・お母さん・子供</ion-select-option>
-      </ion-select>
       <ion-label>在住している都道府県</ion-label>
       <ion-select required [(ngModel)]="prefecture" name="prefecture" placeholder="1つ選んでください">
         <ion-select-option value="北海道">北海道</ion-select-option>

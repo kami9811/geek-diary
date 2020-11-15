@@ -5,13 +5,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let a of articleList" button="true">
-    <ion-card-header routerLink="/article/2/{{a.article_id}}/{{a.title}}/{{a.text}}/{{a.id}}">
-      <ion-card-subtitle>{{a.id}}さんの投稿</ion-card-subtitle>
-      <ion-card-title>{{a.title}}</ion-card-title>
-    </ion-card-header>
-  </ion-card>
+  <ng-container *ngFor="let a of articleList">
+    <ion-card button="true" color="{{a.category_color}}-{{a.category_level}}">
+      <ion-card-header routerLink="/article/2/{{a.article_id}}/{{a.title}}/{{a.text}}/{{a.id}}">
+        <ion-card-subtitle>{{a.id}}さんの投稿</ion-card-subtitle>
+        <ion-card-title>{{a.title}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ng-container>
 
+  <!-- 記事の投稿対象混乱を防ぐために, 仕様から外しておく
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button color="base-green" (click)="navigateToSelf()">
       <ion-icon name="newspaper-outline"></ion-icon>
@@ -23,4 +26,5 @@
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  -->
 </ion-content>

@@ -73,7 +73,7 @@ export class LoginPage implements OnInit, OnDestroy {
   login = () => {
     const body = this.postObj;
 
-    this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/login.php', body).subscribe(
+    this.gs.http('https://kn46itblog.com/hackathon/winter2020/php_apis/login.php', body).subscribe(
       res => {
         console.log(res);
         this.returnObj = res;
@@ -83,6 +83,8 @@ export class LoginPage implements OnInit, OnDestroy {
           localStorage.id = this.postObj["id"];
           localStorage.attribute = this.returnObj["attribute"];
           localStorage.prefecture = this.returnObj["prefecture"];
+          localStorage.distance = this.returnObj["distance"];
+          localStorage.attribute = this.returnObj["attribute"];
           localStorage.password = this.postObj["password"];
           localStorage.hash = this.returnObj["hash"];
           console.log('Stored item!');

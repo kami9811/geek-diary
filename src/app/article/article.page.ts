@@ -27,6 +27,13 @@ export class ArticlePage implements OnInit {
 
   headerTitle: string = 'やらかし共有記事';
 
+  ccppFill: string = 'outline';
+  pythonFill: string = 'outline';
+  webFill: string = 'outline';
+  serverFill: string = 'outline';
+  nativeFill: string = 'outline';
+  iotFill: string = 'outline';
+
   constructor(
     public gs: GlobalService,
     private router: Router,
@@ -40,13 +47,13 @@ export class ArticlePage implements OnInit {
         this.tab = params['tab'];
         this.article_id = params['article_id'];
         this.title = params['title'];
-        this.text = params['text'];
+        this.text = params['text'].replace(/\r?\n/g, '<br>');
         this.id = params['id'];
       }
     );
-    if(this.tab == 1 || this.tab == 3){
+    if(true){
       this.imageFlag = true;
-      this.headerTitle = 'すまいる日誌';
+      this.headerTitle = 'Geek Diary';
     }
     // console.log();
     // this.posObj['id'] = this.user_id;
@@ -67,26 +74,17 @@ export class ArticlePage implements OnInit {
   postComment = () => {
     // 'article/:tab/:article_id/:title/:text/:id'
     this.postObj['comment'] = this.comment;
+    this.postObj['attribute'] = localStorage.attribute;
 
     const body = this.postObj;
-    if(this.tab == 1 || this.tab == 3){
-      this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/registerDiaryComment.php', body).subscribe(
+    if(true){
+      this.gs.http('https://kn46itblog.com/hackathon/winter2020/php_apis/registerDiaryComment.php', body).subscribe(
         res => {
           // console.log(res);
           // this.router.navigate(['/article', this.tab, this.article_id, this.title, this.text, this.id]);
           this.loadContents();
           this.alertComment();
-        },
-        error => console.error(error)
-      );
-    }
-    else if(this.tab == 2){
-      this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/registerTipsComment.php', body).subscribe(
-        res => {
-          console.log(res),
-          // this.router.navigate(['/article', this.tab, this.article_id, this.title, this.text, this.id]);
-          this.loadContents();
-          this.alertComment();
+          this.comment = '';
         },
         error => console.error(error)
       );
@@ -99,29 +97,35 @@ export class ArticlePage implements OnInit {
 
     const body = this.postObj;
     // console.log('hash: ' + body['hash'] + ', id: ' + body['id']);
-    if(this.tab == 1 || this.tab == 3){
-      this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getDiaryArticleContents.php', body).subscribe(
+    if(true){
+      this.gs.http('https://kn46itblog.com/hackathon/winter2020/php_apis/getDiaryArticleContents.php', body).subscribe(
         res => {
           console.log(res);
           this.returnObj = res;
           this.image = this.returnObj['image'];
-          this.commentList = [];
-          for(let i: any = 0; i < this.returnObj['comment_num']; i++){
-            let n = i + 1;
-            this.objWord = 'comment' + n;
-            this.commentList.push(this.returnObj['comment_list'][this.objWord]);
+          if(this.returnObj['image_check'] == 0){
+            this.imageFlag = false;
           }
-          console.log(this.commentList);
-        },
-        error => console.error(error)
-      );
-    }
-    if(this.tab == 2){
-      this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/getTipsArticleContents.php', body).subscribe(
-        res => {
-          console.log(res);
-          this.returnObj = res;
-          this.image = this.returnObj['image'];
+
+          if(this.returnObj['ccpp'] == 1){
+            this.ccppFill = 'solid';
+          }
+          if(this.returnObj['python'] == 1){
+            this.pythonFill = 'solid';
+          }
+          if(this.returnObj['web'] == 1){
+            this.webFill = 'solid';
+          }
+          if(this.returnObj['server'] == 1){
+            this.serverFill = 'solid';
+          }
+          if(this.returnObj['native'] == 1){
+            this.nativeFill = 'solid';
+          }
+          if(this.returnObj['iot'] == 1){
+            this.iotFill = 'solid';
+          }
+
           this.commentList = [];
           for(let i: any = 0; i < this.returnObj['comment_num']; i++){
             let n = i + 1;

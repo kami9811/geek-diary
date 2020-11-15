@@ -25,7 +25,6 @@ export class EditPage implements OnInit {
   returnObj: any = {};
 
   tab: Number;
-  tabFlag: Boolean = false;
 
   ccpp: number = 0;
   python: number = 0;
@@ -53,9 +52,6 @@ export class EditPage implements OnInit {
     this.route.params.subscribe(
       params => {
         this.tab = params['tab'];
-        if(this.tab == 1){
-          this.tabFlag = true;
-        }
       },
       error => console.error(error)
     );
@@ -78,6 +74,7 @@ export class EditPage implements OnInit {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, imgWidth, this.imgHeight);
         this.image = canvas.toDataURL(imgType);
+        console.log(this.image);
       }
       // 画像ファイルを base64 文字列に変換します
       img.src = fileReader.result;
@@ -101,29 +98,29 @@ export class EditPage implements OnInit {
         this.postObj['title'] = this.title;
         this.postObj['text'] = this.text;
         this.postObj['image'] = this.image;
+        var image_check = 0;
+        if(this.imageFlag){
+          image_check = 1;
+        }
+        this.postObj['image_check'] = image_check;
+        this.postObj['ccpp'] = this.ccpp;
+        this.postObj['python'] = this.python;
+        this.postObj['web'] = this.web;
+        this.postObj['server'] = this.server;
+        this.postObj['native'] = this.native;
+        this.postObj['iot'] = this.iot;
+        this.postObj['attribute'] = localStorage.attribute;
         this.postObj['hash'] = localStorage.hash;
 
         const body = this.postObj;
-        if(this.tab == 1){
-          this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/registerDiaryArticle.php', body).subscribe(
-            res => {
-              console.log(res);
-              this.navigate();
-              this.alertPost();
-            },
-            error => console.error(error)
-          );
-        }
-        else if (this.tab == 2){
-          this.gs.http('https://kn46itblog.com/hackathon/CCCu22/php_apis/registerTipsArticle.php', body).subscribe(
-            res => {
-              console.log(res);
-              this.navigate();
-              this.alertPost();
-            },
-            error => console.error(error)
-          );
-        }
+        this.gs.http('https://kn46itblog.com/hackathon/winter2020/php_apis/registerDiaryArticle.php', body).subscribe(
+          res => {
+            console.log(res);
+            this.navigate();
+            this.alertPost();
+          },
+          error => console.error(error)
+        );
       },
       error => console.error(error)
     );

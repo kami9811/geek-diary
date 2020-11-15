@@ -15,11 +15,40 @@
     </ion-card-header>
   </ion-card>
 
-  <div *ngIf="imageFlag" id="image">
-    <ion-img [src]="image"></ion-img>
+  <div id="category-center" class="ion-text-center ion-padding-top">
+    カテゴリ
   </div>
 
-  <div id="text">{{text}}</div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button id="ccpp" expand="block" [fill]="ccppFill" color="ccpp-three">C/C++</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button id="python" expand="block" [fill]="pythonFill" color="python-three">Python</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button id="web" expand="block" [fill]="webFill" color="web-three">Web系</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button id="server" expand="block" [fill]="serverFill" color="server-three">Server</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button id="native" expand="block" [fill]="nativeFill" color="native-three">ネイティブ</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button id="iot" expand="block" [fill]="iotFill" color="iot-three">IoT</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="imageFlag">
+    <ion-img [src]="image" id="image"></ion-img>
+  </div>
+
+  <div class="ion-padding" id="text" [innerHTML]="text"></div>
 
   <ion-card *ngFor="let c of commentList" button="true">
     <ion-card-header>
