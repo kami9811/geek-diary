@@ -65,7 +65,7 @@ export class Tab1Page implements OnInit {
     this.interval = setInterval(() => {
       // Function
       this.getList();
-    }, 10000);
+    }, 1500);
   }
 
   async alertGps() {

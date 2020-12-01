@@ -9,9 +9,9 @@
 
 <ion-content>
   <ng-container *ngFor="let a of articleList">
-    <ion-card *ngFor="let a of articleList" button="true" color="{{a.category_color}}-{{a.category_level}}">
+    <ion-card button="true" color="{{a.category_color}}-{{a.category_level}}">
       <ion-card-header routerLink="/article/{{tab}}/{{a.article_id}}/{{a.title}}/{{a.text}}/{{a.id}}">
-        <ion-card-subtitle>{{a.id}}さんの投稿</ion-card-subtitle>
+        <ion-card-subtitle>{{a.id}}さんの投稿<br>{{a.date}}</ion-card-subtitle>
         <ion-card-title>{{a.title}}</ion-card-title>
       </ion-card-header>
     </ion-card>
